@@ -27,7 +27,6 @@ module ToyRobot
 
     def go!
       @commands.each do |cmd|
-        # traversing over the board ignoring strange commands if given
         if ALLOWED_COMMANDS.include? cmd.split(' ').first
           traverse cmd 
 
@@ -76,7 +75,7 @@ module ToyRobot
         return place_on_board(x: x.to_i, y: y.to_i, f: f)
       end
 
-      return unless is_on_the_table? # just ignore if isn't on the table
+      return unless is_on_the_table?
 
       return rotate cmd if cmd == "LEFT" || cmd == "RIGHT"  
       
@@ -117,8 +116,8 @@ module ToyRobot
 
       x -= 1 if @direction_to_move == "WEST"
       x += 1 if @direction_to_move == "EAST"
-      y -= 1 if @direction_to_move == "NORTH"
-      y += 1 if @direction_to_move == "SOUTH"
+      y -= 1 if @direction_to_move == "SOUTH"
+      y += 1 if @direction_to_move == "NORTH"
 
       if valid_place_command? x, y
         @position[:x] = x
